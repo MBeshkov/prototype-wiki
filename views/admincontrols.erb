@@ -1,0 +1,20 @@
+<h2>Admin controls page</h2>
+<p><b>User list</b></p><br>
+<p>Username - Date Joined - Edit Rights?</p><br>
+<% @list2.each do |liste| %>
+	<article>
+	<p>
+		<%= liste.username %> - <%=liste.created_at %> - <%=liste.edit %>
+		<% if liste.username != "Admin" %>
+			<form action = "/user/<%=liste.username %>" method="post" id="edit">
+				<input type="hidden" name="_method" value="put">
+				<input type="checkbox" name="edit"<%="checked" if liste.edit %>>
+				<input type="submit" value="Allow Edit?">
+			</form>
+		<% end %>
+		<% if liste.username != "Admin" %>
+			<a href="/user/delete/<%=liste.username %>">Delete User</a>
+		<% end %>
+	</p>
+	</article>
+<% end %>

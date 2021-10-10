@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "width=device-width">
+	<meta name = "description" content="This is my new Wiki app"/>
+	<meta name = "keywords" content="wiki, test app, blog"/>
+	<link rel="stylesheet" href ="/style.css" type="text/css"/>
+	<title>My Wiki application</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="javascript.js"></script>
+</head>
+<body>
+	<h1 id="big_title">Granite City Stories</h1>
+	<!-----------------------------NAV-------------------------------------->
+	<div class = "navbar">
+		<a href = "/">Home</a>
+		<a href = "/create">Create</a>
+		<a href = "/about">About</a>
+		<% if $credentials %>
+			<% if $credentials[0] != '' %>
+				<% if $credentials[0] == "Admin" %>
+					<a href ="/admincontrols">Admin Controls</a>
+				<% end %>
+				<p style="position:absolute;top:30px;right:175px;">
+					Logged in as <b><%=$credentials[0]%></b>
+				</p>
+				<a href = "/logout">Logout</a>
+			<% else %>
+				<a href="/login">Login</a>
+			<% end %>
+		<% else %>
+			<a href = "/login">Login</a>
+		<% end %>		
+	</div>
+	<!-----------------------------MAIN CONTAINER--------------------------->
+	<div class ="main_container">
+					<!----------------COLUMN LEFT--------------------------->
+		<div class="columnleft">
+			<a href="/" style="color:white;"><h2>COME BACK HOME</h2></a>
+		</div>
+					<!----------------COLUMN RIGHT-------------------------->
+		<div class="columnright">
+		</div>
+					<!---------------------HEADER--------------------------->
+		<header>
+			<br><br>
+		</header>
+		
+						<!----------------CONTENT--------------------------->
+
+		<div class="content">
+			<%= yield %>
+		</div>
+
+						<!----------------FOOTER--------------------------->
+		<footer>
+			<p>Created by WAD Group S</p>
+		</footer>
+	</div>
+</div>
+</body>			

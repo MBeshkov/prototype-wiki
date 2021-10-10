@@ -1,0 +1,47 @@
+<h1><%=page="#{params[:page]}"%></h1>
+<p style="text-align: justify;">
+<%= 
+	current=1
+	'<h1>'"#{page}"'</h1>'
+	readFile("pages/"+page+".txt")
+%>
+</p>
+
+<%=
+n=0
+creator=false
+File.foreach('pages.txt') do |l|
+	if l.gsub(/[[:space:]]/, '') == page
+    	n=$.
+	end 
+end%>
+<%File.foreach('creators.txt') do |cr|
+	unless $credentials==nil%>
+		<%if current==n and $credentials[0]==cr.gsub(/[[:space:]]/, '')
+			creator=true %>
+			<form action=<%='/edit/'+"#{page}" %>>
+	   			<input type="submit" value="Edit" />
+			</form>
+			<form action=<%='/reset/'+"#{page}" %>>
+	   			<input type="submit" value="Reset" />
+			</form>
+			
+		<%end 
+		current=current+1%>
+	<%end%>
+<%end%>
+<%unless $credentials==nil%>
+	<%if $credentials[0]=='Admin' and creator==false
+		creator=true %>
+		<form action=<%='/edit/'+"#{page}" %>>
+	   		<input type="submit" value="Edit" />
+		</form>
+		<form action=<%='/reset/'+"#{page}" %>>
+		    <input type="submit" value="Reset" />
+		</form>
+	<%end%>
+<%end%>
+<%if creator==false%>
+	<br><br>
+	<p>You must be the creator to edit this page.</p>
+<%end%>

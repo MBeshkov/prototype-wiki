@@ -1,0 +1,11 @@
+<h2>SHARE YOUR STORY</h2><br>
+<% if ($credentials==nil or $credentials==['',''])%>
+	<p>You need to be logged in. =)</p>
+<%else%>
+	<form name="createpage" action="/create" method="post">
+		<input type="hidden" name="_method" value="put">
+		<input name="title" type="text" placeholder="Title">
+		<textarea name="text" placeholder="This page talks about..."></textarea><br>
+		<input type="submit" value="Create">
+	</form>
+<%end%>

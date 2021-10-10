@@ -1,0 +1,19 @@
+
+
+<h2>Edit <%= page="#{params[:page]}" %></h2>
+<form method = post id = "edit" action=<%='/edit/'+"#{page}"%> >
+	<input type = "hidden" name = "_method" value ="put">
+	<textarea name = "message"><%=readFile("pages/"+page+".txt")%></textarea><br>
+	<input type ="submit" value = "Update">
+	
+</form>
+<br>
+<%
+msg = readFile("pages/"+page+".txt")
+wordsCount = msg.split(" ")
+@wordsCountEdit = wordsCount.length
+charCount = wordsCount.join('')
+@charCountEdit = charCount.size
+%>
+Number of words = <%= @wordsCountEdit %><br>
+Number of chracters = <%= @charCountEdit %><br>
